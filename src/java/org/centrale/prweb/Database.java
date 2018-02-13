@@ -139,10 +139,10 @@ public class Database {
     }
 
     /**
-     * Méthode saveUser Ajoute un usager à la base de données
+     * saveUser method : add a user to the database
      *
      * @param request
-     * @return : le paramètre de connexion ID
+     * @return : connection id
      */
     public static int saveUser(HttpServletRequest request) {
         int res = 0;
@@ -176,14 +176,13 @@ public class Database {
     }
 
     /**
-     * Méthode removeUser Enlève un usager de la base de données
+     * removeUser method remove a user from the database
      *
-     * @param connexionId : id de connexion de l'usager
+     * @param connexionId : coonnection id of the user
      */
     public static void removeUser(int connexionId) {
         try {
             Database.init();
-            //Connection conn = DriverManager.getConnection(connectionDataSource.getUrl(), connectionDataSource.getUsername(), connectionDataSource.getPassword());
             Connection conn = getConnection();
             String query = "DELETE FROM connexion WHERE connexion_id=?";
             PreparedStatement theStmt = conn.prepareStatement(query);
@@ -194,5 +193,26 @@ public class Database {
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static boolean checkId(HttpServletRequest request) {
+        int idToCheck = Integer.parseInt(request.getParameter("connexionId"));
+        boolean res = false;
+        try {
+            Database.init();
+            Connection conn = getConnection();
+            String query = "SELECT * FROM connexion WHERE connexion_id=?";
+            PreparedStatement theStmt = conn.prepareStatement(query);
+            theStmt.setInt(1, idToCheck);
+            ResultSet theRS = theStmt.executeQuery();
+            if (theRS.next()) {
+                res = true;
+            }
+            theStmt.close();
+            closeAllConnections();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
     }
 }

@@ -1,3 +1,9 @@
+<%-- 
+    Document   : page
+    Created on : 13 févr. 2018, 18:42:15
+    Author     : Quentin GIBAUD
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr-fr">
@@ -6,17 +12,7 @@
 		<meta charset="UTF-8" />
 	</head>
 	<body>
-            <%@page import="org.centrale.prweb.Utilities" %>
-            <div id="header">
-                <div id="imageHeader">
-                    <img src="ECN.jpg" alt="ECN Logo" height="75" />
-                </div>
-                <div id="titleHeader">
-                    <p>Ecole Centrale de Nantes</p>
-                </div>
-                <div id="mailHeader">
-                    <%=Utilities.getEmail(request) %>
-                </div>
-            </div>
+            <p>Félicitations !!!</p>
+            <p>Vous avez réussi à vous connecter et tout va bien</p>
 	</body>
 </html>

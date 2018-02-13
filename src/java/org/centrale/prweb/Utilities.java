@@ -16,17 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Class Utilities
- * Contient les méthodes statiques utiles pour ce TP
+ * Contient les mÃ©thodes statiques utiles pour ce TP
  * @author Quentin GIBAUD
  */
 public class Utilities {
     
     /**
-     * Méthode launchJSP
-     * Permet de renvoyer une page.jsp
-     * @param request : la requête envoyé
-     * @param response : la réponse à envoyer au serveur
-     * @param page : la page à afficher
+     * launchJSP method
+     * send a .jsp page
+     * @param request 
+     * @param response 
+     * @param page : the page to send
      */
     public static void launchJSP(HttpServletRequest request, HttpServletResponse response, String page){
         try {
@@ -39,10 +39,10 @@ public class Utilities {
     }
     
     /**
-     * Méthode getEmail
-     * Renvoie l'e-mail de la personne qui s'est connecté
+     * getEmail method
+     * get the e-mail of the connected person
      * @param request
-     * @return e-mail de la personne qui s'est connecté avec le login et le mot de passe
+     * @return mail of the person who is connected with the login and password
      */
     public static String getEmail(HttpServletRequest request) {
         String email = "";
@@ -53,6 +53,30 @@ public class Utilities {
             email = infos.get("mail");
         }
         return email;
+    }
+    
+    public static String getMessageInFrame(HttpServletRequest request) {
+        String val = request.getParameter("value");
+        switch (val) {
+            case "economie" :
+                return "La page Economie !!!";
+            case "finance" :
+                return "La page Finance !!!";
+            case "sciences" :
+                return "La page des Sciences !!!";
+            case "marine" :
+                return "La page sur la Marine";
+            case "da_inquisition" :
+                return "Le fameux jeu DA Inquisition !!!";
+            case "skyrim" :
+                return "Le fameux jeu Skyrim !!!";
+            case "the_witcher" :
+                return "Le fameux jeu The Witcher !!!";
+            case "dota2" :
+                return "Le fameux jeu Dota 2 !!!";
+            default :
+                return "...Ben vous vous êtes planté où j'ai mal fait mon boulot ...";
+        }    
     }
     
 }
