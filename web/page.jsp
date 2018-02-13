@@ -12,7 +12,7 @@
                     <img src="ECN.jpg" alt="ECN Logo" height="75" />
                 </div>
                 <div id="titleHeader">
-                    Ecole Centrale de Nantes
+                    <p>Ecole Centrale de Nantes</p>
                 </div>
                 <div id="mailHeader">
                     <%=Utilities.getEmail(request) %>
