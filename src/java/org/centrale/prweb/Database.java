@@ -20,8 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;	// TOMCAT 8 +
 
 /**
- *
- * @author Kwyhr
+ * Database class
+ * All the methods that need a connection to a database
+ * @author Quentin GIBAUD
  */
 public class Database {
 
@@ -195,6 +196,12 @@ public class Database {
         }
     }
 
+    /**
+     * checkID method
+     * Check that the ID is in the database, i.e. the user is authentified
+     * @param request
+     * @return
+     */
     public static boolean checkId(HttpServletRequest request) {
         int idToCheck = Integer.parseInt(request.getParameter("connexionId"));
         boolean res = false;

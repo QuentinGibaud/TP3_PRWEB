@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Class Utilities
- * Contient les mÃ©thodes statiques utiles pour ce TP
+ * Include static methods for the TP
  * @author Quentin GIBAUD
  */
 public class Utilities {
@@ -55,6 +55,12 @@ public class Utilities {
         return email;
     }
     
+    /**
+     * getMessageInFrame method
+     * Return the rest of the message to print in iframe.jsp depending on the value
+     * @param request
+     * @return
+     */
     public static String getMessageInFrame(HttpServletRequest request) {
         String val = request.getParameter("value");
         switch (val) {
