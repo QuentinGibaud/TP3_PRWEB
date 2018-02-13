@@ -138,6 +138,12 @@ public class Database {
         return null;
     }
 
+    /**
+     * Méthode saveUser Ajoute un usager à la base de données
+     *
+     * @param request
+     * @return : le paramètre de connexion ID
+     */
     public static int saveUser(HttpServletRequest request) {
         int res = 0;
         String login = request.getParameter("login");
@@ -163,9 +169,30 @@ public class Database {
                 theStmt.close();
                 closeAllConnections();
             } catch (SQLException ex) {
-                Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return res;
+    }
+
+    /**
+     * Méthode removeUser Enlève un usager de la base de données
+     *
+     * @param connexionId : id de connexion de l'usager
+     */
+    public static void removeUser(int connexionId) {
+        try {
+            Database.init();
+            //Connection conn = DriverManager.getConnection(connectionDataSource.getUrl(), connectionDataSource.getUsername(), connectionDataSource.getPassword());
+            Connection conn = getConnection();
+            String query = "DELETE FROM connexion WHERE connexion_id=?";
+            PreparedStatement theStmt = conn.prepareStatement(query);
+            theStmt.setInt(1, connexionId);
+            theStmt.executeUpdate();
+            theStmt.close();
+            closeAllConnections();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

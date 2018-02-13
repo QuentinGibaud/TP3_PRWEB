@@ -80,7 +80,8 @@ public class Identify extends HttpServlet {
             if (login.equals("admin") && mdp.equals("admin")) {
                 Utilities.launchJSP(request, response, "base.jsp");
             } else if (LDAP.identifyLDAPUID(login, mdp)){
-                Database.saveUser(request);
+                int theId = Database.saveUser(request);
+                request.setAttribute("connexionId", theId);
                 Utilities.launchJSP(request, response, "base.jsp");                
             } else {            
                 Utilities.launchJSP(request, response, "index.jsp");
