@@ -37,7 +37,7 @@ public class Disconnect extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Disconnect</title>");            
+            out.println("<title>Servlet Disconnect</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Disconnect at " + request.getContextPath() + "</h1>");
@@ -76,8 +76,12 @@ public class Disconnect extends HttpServlet {
             throws ServletException, IOException {
         String idToRemove = request.getParameter("connexionId");
         int toRemove = Integer.parseInt(idToRemove);
-        Database.removeUser(toRemove);
-        Utilities.launchJSP(request, response, "index.jsp");
+        if (toRemove == 0) {
+            Utilities.launchJSP(request, response, "index.jsp");
+        } else {
+            Database.removeUser(toRemove);
+            Utilities.launchJSP(request, response, "index.jsp");
+        }
     }
 
     /**

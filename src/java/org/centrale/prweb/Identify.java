@@ -78,6 +78,7 @@ public class Identify extends HttpServlet {
         String mdp = request.getParameter("password");
         if ((login != null) && (mdp != null)) {
             if (login.equals("admin") && mdp.equals("admin")) {
+                request.setAttribute("connexionId", 0);
                 Utilities.launchJSP(request, response, "base.jsp");
             } else if (LDAP.identifyLDAPUID(login, mdp)){
                 int theId = Database.saveUser(request);

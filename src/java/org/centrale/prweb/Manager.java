@@ -37,7 +37,7 @@ public class Manager extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Manager</title>");            
+            out.println("<title>Servlet Manager</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Manager at " + request.getContextPath() + "</h1>");
@@ -57,14 +57,16 @@ public class Manager extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (Database.checkId(request)){
+        if (Database.checkId(request)) {
             request.setAttribute("value", request.getParameter("value"));
+        } else if (Integer.parseInt(request.getParameter("connexionId"))==0) {
+            request.setAttribute("value", "classic");
         } else {
             request.setAttribute("value", "Forbidden");
         }
         String val = request.getParameter("value");
-        if (!val.equals("Forbidden")){
-            if (val.equals("classic")){
+        if (!val.equals("Forbidden")) {
+            if (val.equals("classic")) {
                 Utilities.launchJSP(request, response, "page.jsp");
             } else {
                 Utilities.launchJSP(request, response, "iframe.jsp");
